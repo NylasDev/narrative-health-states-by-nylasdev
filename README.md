@@ -4,7 +4,7 @@ A Foundry VTT module that shows narrative health descriptors when players hover 
 
 Instead of seeing exact HP numbers, players see colored tooltips displaying states like **"Injured"** or **"Near Death"** when hovering over enemies.
 
-![Version](https://img.shields.io/badge/version-0.1.2-blue)
+![Version](https://img.shields.io/badge/version-0.1.3-blue)
 ![Foundry](https://img.shields.io/badge/Foundry-v11--v13-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
