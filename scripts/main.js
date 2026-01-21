@@ -95,18 +95,11 @@ Hooks.on("hoverToken", (token, hovered) => {
   
   log("Actor:", actor.name, "Type:", actor.type);
   
-  // Only show for actors the player can observe
-  if (!actor.testUserPermission(user, "OBSERVER")) {
-    log("No observer permission");
-    return;
-  }
-  
-  // Check if this is an NPC/enemy (not owned by the player)
+  // Check if this is an NPC/enemy (not owned by players)
   const isPlayerOwned = actor.hasPlayerOwner;
   log("Is player owned:", isPlayerOwned);
   
-  // Show for NPCs, or for GMs on any token
-  if (hovered && (!isPlayerOwned || user.isGM)) {
+  if (hovered) {
     const hp = actor.system?.attributes?.hp;
     if (!hp || hp.max <= 0) {
       log("No valid HP data:", hp);
