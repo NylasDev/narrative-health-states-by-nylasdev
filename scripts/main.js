@@ -56,35 +56,22 @@ function showHealthTooltip(token, state, hp = null) {
   tooltip.className = `narrative-health-tooltip ${state.toLowerCase().replace(/\s+/g, '-')}`;
   tooltip.style.display = 'block';
   
-  // Get token position on screen
-  // Use token.document for v10+ or token for older versions
-  const tokenDoc = token.document || token;
-  const tokenObject = token.object || token;
+  // Get token center in WORLD coordinates
+  const tokenCenter = token.center;
   
-  // Calculate screen position
-  let x, y;
+  // Convert world coordinates to screen coordinates
+  const transform = canvas.stage.worldTransform;
+  const screenX = tokenCenter.x * transform.a + transform.tx;
+  const screenY = tokenCenter.y * transform.d + transform.ty;
   
-  if (tokenObject.center) {
-    // v10+ method
-    const center = tokenObject.center;
-    x = center.x;
-    y = center.y;
-  } else if (token.worldTransform) {
-    // Fallback using world transform
-    x = token.worldTransform.tx + (token.w / 2);
-    y = token.worldTransform.ty;
-  } else {
-    // Last resort - use token position
-    x = token.x + (token.w / 2);
-    y = token.y;
-  }
+  log("World position:", tokenCenter.x, tokenCenter.y);
+  log("Screen position:", screenX, screenY);
   
-  log("Token position:", {x, y, token});
+  // Position tooltip above token (40px up from center)
+  tooltip.style.left = `${screenX}px`;
+  tooltip.style.top = `${screenY - 40}px`;
   
-  tooltip.style.left = `${x}px`;
-  tooltip.style.top = `${y - 40}px`;
-  
-  log("Tooltip shown:", state, "at", x, y);
+  log("Tooltip shown:", state, "at screen coords", screenX, screenY);
 }
 
 function hideHealthTooltip() {
