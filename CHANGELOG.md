@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.4] - 2026-01-21
+
+### Fixed
+- **Players can now see all tooltips**: Removed permission checks that blocked tooltips for player-owned PCs and allies
+- Players now see health states on their own characters, allied characters, and enemies
+- Players see only descriptive text (e.g., "Injured")
+- GMs continue to see both descriptive text and exact HP (e.g., "Injured (12/25)")
+
+### Changed
+- Tooltip positioned 3x higher above tokens (120px instead of 40px) for better visibility
+
 ## [0.1.3] - 2026-01-21
 
 ### Fixed
@@ -54,7 +65,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Permission-aware - respects Foundry's actor permission system
 - Zero configuration required - works out of the box
 
-[Unreleased]: https://github.com/NylasDev/narrative-health-states-by-nylasdev/compare/v0.1.3...HEAD
+[Unreleased]: https://github.com/NylasDev/narrative-health-states-by-nylasdev/compare/v0.1.4...HEAD
+[0.1.4]: https://github.com/NylasDev/narrative-health-states-by-nylasdev/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/NylasDev/narrative-health-states-by-nylasdev/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/NylasDev/narrative-health-states-by-nylasdev/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/NylasDev/narrative-health-states-by-nylasdev/compare/v0.1.0...v0.1.1
