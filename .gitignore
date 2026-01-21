@@ -24,3 +24,6 @@ build/
 
 # Module specific
 .module-cache/
+
+# Technical documentation (for development only)
+TECHNICAL.md

@@ -6,6 +6,12 @@
  * Inspired by classic CRPGs like Baldur's Gate, Planescape: Torment, and Icewind Dale
  */
 
+const DEBUG = true; // Set to false to disable logging
+
+function log(...args) {
+  if (DEBUG) console.log("[Narrative Health States]", ...args);
+}
+
 // Define the classic Baldur's Gate health thresholds
 function getHealthState(current, max) {
   if (max <= 0) return "Unknown";
@@ -33,6 +39,7 @@ function createHealthTooltip() {
   healthTooltip.style.display = 'none';
   document.body.appendChild(healthTooltip);
   
+  log("Tooltip element created");
   return healthTooltip;
 }
 
@@ -43,40 +50,82 @@ function showHealthTooltip(token, state) {
   tooltip.className = `narrative-health-tooltip ${state.toLowerCase().replace(/\s+/g, '-')}`;
   tooltip.style.display = 'block';
   
-  // Position above the token
-  const bounds = token.bounds;
-  const scale = canvas.stage.scale.x;
+  // Get token position on screen
+  // Use token.document for v10+ or token for older versions
+  const tokenDoc = token.document || token;
+  const tokenObject = token.object || token;
   
-  tooltip.style.left = `${bounds.x + (bounds.width / 2)}px`;
-  tooltip.style.top = `${bounds.y - 40}px`;
+  // Calculate screen position
+  let x, y;
+  
+  if (tokenObject.center) {
+    // v10+ method
+    const center = tokenObject.center;
+    x = center.x;
+    y = center.y;
+  } else if (token.worldTransform) {
+    // Fallback using world transform
+    x = token.worldTransform.tx + (token.w / 2);
+    y = token.worldTransform.ty;
+  } else {
+    // Last resort - use token position
+    x = token.x + (token.w / 2);
+    y = token.y;
+  }
+  
+  log("Token position:", {x, y, token});
+  
+  tooltip.style.left = `${x}px`;
+  tooltip.style.top = `${y - 40}px`;
+  
+  log("Tooltip shown:", state, "at", x, y);
 }
 
 function hideHealthTooltip() {
   if (healthTooltip) {
     healthTooltip.style.display = 'none';
+    log("Tooltip hidden");
   }
 }
 
 // Hook into token hover events
 Hooks.on("hoverToken", (token, hovered) => {
+  log("hoverToken hook fired:", {token, hovered});
+  
   const user = game.user;
   
   // GMs always see numeric HP
-  if (user.isGM) return;
+  if (user.isGM) {
+    log("User is GM, skipping");
+    return;
+  }
   
-  const actor = token.actor;
-  if (!actor) return;
+  const actor = token.actor || token.document?.actor;
+  if (!actor) {
+    log("No actor found");
+    return;
+  }
+  
+  log("Actor:", actor.name, "Type:", actor.type);
   
   // Only show for actors the player can observe
-  if (!actor.testUserPermission(user, "OBSERVER")) return;
+  if (!actor.testUserPermission(user, "OBSERVER")) {
+    log("No observer permission");
+    return;
+  }
   
   // Check if this is an NPC/enemy (not owned by the player)
   const isPlayerOwned = actor.hasPlayerOwner;
+  log("Is player owned:", isPlayerOwned);
   
   if (hovered && !isPlayerOwned) {
     const hp = actor.system?.attributes?.hp;
-    if (!hp || hp.max <= 0) return;
+    if (!hp || hp.max <= 0) {
+      log("No valid HP data:", hp);
+      return;
+    }
     
+    log("HP:", hp.value, "/", hp.max);
     const state = getHealthState(hp.value, hp.max);
     showHealthTooltip(token, state);
   } else {
@@ -86,6 +135,7 @@ Hooks.on("hoverToken", (token, hovered) => {
 
 // Also hide tooltip when canvas is panned or deselected
 Hooks.on("canvasPan", () => {
+  log("Canvas panned, hiding tooltip");
   hideHealthTooltip();
 });
 
@@ -93,6 +143,7 @@ Hooks.on("canvasPan", () => {
 Hooks.once("ready", () => {
   console.log("Narrative Health States | Module loaded by NylasDev");
   console.log("Narrative Health States | Hover over enemy tokens to see their health state");
+  console.log("Narrative Health States | Set DEBUG=true in main.js for verbose logging");
   
   // Create tooltip element on ready
   createHealthTooltip();
