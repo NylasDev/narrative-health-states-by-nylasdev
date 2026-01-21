@@ -1,0 +1,11 @@
+{
+  "BGHS.Unhurt": "Unhurt",
+  "BGHS.BarelyInjured": "Barely Injured",
+  "BGHS.Injured": "Injured",
+  "BGHS.BadlyInjured": "Badly Injured",
+  "BGHS.NearDeath": "Near Death",
+  "BGHS.Dead": "Dead",
+  "BGHS.Unknown": "Unknown",
+  "BGHS.HealthLabel": "Health",
+  "BGHS.Subtitle": "Baldur's Gate Style"
+}

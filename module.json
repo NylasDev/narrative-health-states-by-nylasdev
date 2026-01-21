@@ -1,0 +1,37 @@
+{
+  "id": "narrative-health-states-nylasdev",
+  "title": "Baldur's Gate Health Descriptions",
+  "description": "Replaces numeric HP values with classic Baldur's Gate / Infinity Engine-style health descriptors such as Unhurt, Injured, and Near Death. Players see narrative health states while GMs retain full numeric HP visibility.",
+  "version": "0.1.0",
+  "authors": [
+    {
+      "name": "NylasDev",
+      "url": "https://github.com/NylasDev",
+      "discord": "nylasdev"
+    }
+  ],
+  "url": "https://github.com/NylasDev/narrative-health-states-by-nylasdev",
+  "manifest": "https://raw.githubusercontent.com/NylasDev/narrative-health-states-by-nylasdev/main/module.json",
+  "download": "https://github.com/NylasDev/narrative-health-states-by-nylasdev/releases/download/v0.1.0/narrative-health-states-nylasdev.zip",
+  "license": "LICENSE",
+  "readme": "README.md",
+  "bugs": "https://github.com/NylasDev/narrative-health-states-by-nylasdev/issues",
+  "changelog": "https://github.com/NylasDev/narrative-health-states-by-nylasdev/releases",
+  "compatibility": {
+    "minimum": "10",
+    "verified": "11"
+  },
+  "esmodules": [
+    "scripts/main.js"
+  ],
+  "styles": [
+    "styles/health.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ]
+}
