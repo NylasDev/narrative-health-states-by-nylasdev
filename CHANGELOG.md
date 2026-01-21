@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-01-21
+
+### Added
+- GM tooltip support: GMs now see health state + numeric HP (e.g., "Injured (12/25)")
+- GMs can hover over any token including player-owned characters
+- Enhanced debugging mode with verbose logging
+- Multiple fallback methods for token positioning (improved v13 compatibility)
+
+### Changed
+- Debug mode enabled by default to help troubleshooting
+- Improved token position calculation for various Foundry versions
+
 ## [0.1.1] - 2026-01-21
 
 ### Changed
@@ -35,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Permission-aware - respects Foundry's actor permission system
 - Zero configuration required - works out of the box
 
-[Unreleased]: https://github.com/NylasDev/narrative-health-states-by-nylasdev/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/NylasDev/narrative-health-states-by-nylasdev/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/NylasDev/narrative-health-states-by-nylasdev/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/NylasDev/narrative-health-states-by-nylasdev/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/NylasDev/narrative-health-states-by-nylasdev/releases/tag/v0.1.0
