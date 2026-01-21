@@ -184,7 +184,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ---
 
 <div align="center">
-  <img src="DragonCicrleLogo.png" alt="Dragon Circle Logo" width="200"/>
+  <img src="screenshots/DragonCicrleLogo.png" alt="Dragon Circle Logo" width="200"/>
   <br/>
   <em>Made with love for my Dungeons and Dragons Club</em>
 </div>
