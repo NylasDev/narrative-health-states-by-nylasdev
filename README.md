@@ -18,7 +18,7 @@ Instead of seeing exact HP numbers, players see colored tooltips displaying stat
 - **System-Agnostic**: Works with D&D 5e and other Foundry systems
 - **Zero Configuration**: Works out of the box after installation
 
-## 📸 Screenshots
+## 📸
 
 ### Player View
 *Hover over any token to see narrative health states*
@@ -134,10 +134,6 @@ The module uses a clean approach:
 4. Hides tooltip on pan or when hover ends
 5. Preserves all underlying HP mechanics
 
-## 📸 Screenshots
-
-*Coming soon - screenshots of the module in action*
-
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
@@ -187,4 +183,8 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-*"You must gather your party before venturing forth."*
+<div align="center">
+  <img src="DragonCicrleLogo.png" alt="Dragon Circle Logo" width="200"/>
+  <br/>
+  <em>Made with love for my Dungeons and Dragons Club</em>
+</div>
