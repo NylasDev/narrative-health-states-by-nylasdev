@@ -1,6 +1,6 @@
 {
   "id": "narrative-health-states-nylasdev",
-  "title": "Narrative Health States",
+  "title": "Narrative Health States by NylasDev",
   "description": "Replaces numeric HP values with narrative health descriptors such as Unhurt, Injured, and Near Death. Inspired by classic CRPGs like Baldur's Gate and Planescape: Torment. Players see descriptive health states while GMs retain full numeric HP visibility.",
   "version": "0.1.0",
   "authors": [

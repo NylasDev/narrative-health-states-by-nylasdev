@@ -1,4 +1,4 @@
-# Narrative Health States
+# Narrative Health States by NylasDev
 
 A Foundry VTT module that replaces numeric HP values with narrative health descriptors inspired by classic CRPGs like **Baldur's Gate**, **Planescape: Torment**, and **Icewind Dale**.
 
