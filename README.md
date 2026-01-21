@@ -1,6 +1,6 @@
-# Baldur's Gate Health Descriptions
+# Narrative Health States
 
-A Foundry VTT module that replaces numeric HP values with classic **Baldur's Gate** / **Infinity Engine**-style health descriptors.
+A Foundry VTT module that replaces numeric HP values with narrative health descriptors inspired by classic CRPGs like **Baldur's Gate**, **Planescape: Torment**, and **Icewind Dale**.
 
 ![Version](https://img.shields.io/badge/version-0.1.0-blue)
 ![Foundry](https://img.shields.io/badge/Foundry-v10--v11-orange)
@@ -28,6 +28,8 @@ The module uses the classic Baldur's Gate health descriptors:
 | **Near Death** | 1-24% | Red (pulsing) |
 | **Dead** | 0% | Gray |
 
+These thresholds match the classic feedback from Baldur's Gate and other Infinity Engine games.
+
 ## 📦 Installation
 
 ### Method 1: Manifest URL (Recommended)
@@ -41,7 +43,7 @@ https://raw.githubusercontent.com/NylasDev/narrative-health-states-by-nylasdev/m
 
 ### Method 2: Search (After Package Registry Approval)
 1. In Foundry VTT, go to **Add-on Modules**
-2. Search for **"Baldur's Gate Health Descriptions"**
+2. Search for **"Narrative Health States"**
 3. Click **Install**
 
 ### Method 3: Manual Installation
@@ -69,9 +71,9 @@ https://raw.githubusercontent.com/NylasDev/narrative-health-states-by-nylasdev/m
 
 ## 🎯 Design Philosophy
 
-This module follows the **Infinity Engine** design philosophy:
+This module follows the design philosophy of classic CRPGs:
 
-> *"Show danger through narrative, not calculation"*
+> *"Show danger through narrative, not calculation"
 
 By hiding precise numbers, players:
 - Make risk assessments based on feel, not math

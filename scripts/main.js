@@ -1,8 +1,9 @@
 /**
- * Baldur's Gate Health Descriptions
+ * Narrative Health States
  * by NylasDev
  * 
- * Replaces numeric HP with classic Infinity Engine-style health states
+ * Replaces numeric HP with narrative health descriptors
+ * Inspired by classic CRPGs like Baldur's Gate, Planescape: Torment, and Icewind Dale
  */
 
 // Define the classic Baldur's Gate health thresholds
@@ -53,7 +54,7 @@ Hooks.on("renderActorSheet", (app, html, data) => {
     <div class="bg-health-state resource">
       <label>Health</label>
       <div class="health-value ${state.toLowerCase().replace(/\s+/g, '-')}">${state}</div>
-      <div class="health-subtitle">Baldur's Gate Style</div>
+      <div class="health-subtitle">Classic CRPG Style</div>
     </div>
   `;
 
@@ -104,6 +105,6 @@ Hooks.on("renderTokenHUD", (hud, html, data) => {
 
 // Log module initialization
 Hooks.once("ready", () => {
-  console.log("Baldur's Gate Health Descriptions | Module loaded by NylasDev");
-  console.log("Baldur's Gate Health Descriptions | Players will now see narrative health states instead of numeric HP");
+  console.log("Narrative Health States | Module loaded by NylasDev");
+  console.log("Narrative Health States | Players will now see narrative health states instead of numeric HP");
 });
