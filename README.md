@@ -23,7 +23,7 @@ Instead of seeing exact HP numbers, players see colored tooltips displaying stat
 ### Player View
 *Hover over any token to see narrative health states*
 
-![Player hovering over enemy](screenshots/player-view.gif)
+![Player hovering over enemy](screenshots/PC-view.gif)
 
 **What players see:**
 - Colored tooltip with descriptive text only
@@ -33,7 +33,7 @@ Instead of seeing exact HP numbers, players see colored tooltips displaying stat
 ### GM View
 *GMs see both narrative state and exact HP*
 
-![GM hovering over token](screenshots/gm-view.gif)
+![GM hovering over token](screenshots/GM-view.gif)
 
 **What GMs see:**
 - Same colored tooltip
