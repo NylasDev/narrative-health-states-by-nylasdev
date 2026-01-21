@@ -5,7 +5,7 @@ A Foundry VTT module that shows narrative health descriptors when players hover 
 Instead of seeing exact HP numbers, players see colored tooltips displaying states like **"Injured"** or **"Near Death"** when hovering over enemies.
 
 ![Version](https://img.shields.io/badge/version-0.1.0-blue)
-![Foundry](https://img.shields.io/badge/Foundry-v10--v11-orange)
+![Foundry](https://img.shields.io/badge/Foundry-v11--v13-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ## ✨ Features
@@ -89,7 +89,7 @@ This was a core design pillar of **Baldur's Gate**, **Icewind Dale**, and **Plan
 
 ## 🔧 Compatibility
 
-- **Foundry VTT**: v10, v11 (tested)
+- **Foundry VTT**: v11, v12, v13 (tested on v13)
 - **Game Systems**: D&D 5e (primary), others with standard HP structure
 - **Conflicts**: None known (does not modify core data)
 

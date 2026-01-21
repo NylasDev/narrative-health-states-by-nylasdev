@@ -18,8 +18,8 @@
   "bugs": "https://github.com/NylasDev/narrative-health-states-by-nylasdev/issues",
   "changelog": "https://github.com/NylasDev/narrative-health-states-by-nylasdev/releases",
   "compatibility": {
-    "minimum": "10",
-    "verified": "11"
+    "minimum": "11",
+    "verified": "13"
   },
   "esmodules": [
     "scripts/main.js"
