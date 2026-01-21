@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-01-21
+
+### Changed
+- Complete redesign: Health states now appear as tooltips when hovering over enemy tokens
+- Removed character sheet HP replacement in favor of token hover system
+- Improved visual presentation with black backgrounds and colored borders
+- Enhanced animations and smooth tooltip transitions
+- Updated compatibility to Foundry VTT v11-v13
+
 ## [0.1.0] - 2026-01-21
 
 ### Added
@@ -26,5 +35,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Permission-aware - respects Foundry's actor permission system
 - Zero configuration required - works out of the box
 
-[Unreleased]: https://github.com/NylasDev/narrative-health-states-by-nylasdev/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/NylasDev/narrative-health-states-by-nylasdev/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/NylasDev/narrative-health-states-by-nylasdev/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/NylasDev/narrative-health-states-by-nylasdev/releases/tag/v0.1.0
