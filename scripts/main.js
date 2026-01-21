@@ -67,9 +67,9 @@ function showHealthTooltip(token, state, hp = null) {
   log("World position:", tokenCenter.x, tokenCenter.y);
   log("Screen position:", screenX, screenY);
   
-  // Position tooltip above token (40px up from center)
+  // Position tooltip above token (120px up from center)
   tooltip.style.left = `${screenX}px`;
-  tooltip.style.top = `${screenY - 40}px`;
+  tooltip.style.top = `${screenY - 120}px`;
   
   log("Tooltip shown:", state, "at screen coords", screenX, screenY);
 }
