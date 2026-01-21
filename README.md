@@ -18,6 +18,30 @@ Instead of seeing exact HP numbers, players see colored tooltips displaying stat
 - **System-Agnostic**: Works with D&D 5e and other Foundry systems
 - **Zero Configuration**: Works out of the box after installation
 
+## 📸 Screenshots
+
+### Player View
+*Hover over any token to see narrative health states*
+
+![Player hovering over enemy](screenshots/player-view.gif)
+
+**What players see:**
+- Colored tooltip with descriptive text only
+- "Injured", "Near Death", etc.
+- No exact HP numbers
+
+### GM View
+*GMs see both narrative state and exact HP*
+
+![GM hovering over token](screenshots/gm-view.gif)
+
+**What GMs see:**
+- Same colored tooltip
+- Health state + exact HP: "Injured (12/25)"
+- Works on all tokens (PCs, NPCs, enemies)
+
+---
+
 ## 🎮 Health States
 
 The module uses the classic Baldur's Gate health descriptors:
