@@ -2,7 +2,7 @@
  * Narrative Health States
  * by NylasDev
  * 
- * Replaces numeric HP with narrative health descriptors
+ * Shows narrative health descriptors when hovering over enemy tokens
  * Inspired by classic CRPGs like Baldur's Gate, Planescape: Torment, and Icewind Dale
  */
 
@@ -22,89 +22,78 @@ function getHealthState(current, max) {
   return "Dead";
 }
 
-// Hook into actor sheet rendering
-Hooks.on("renderActorSheet", (app, html, data) => {
-  const actor = app.actor;
+// Create and manage the health tooltip
+let healthTooltip = null;
+
+function createHealthTooltip() {
+  if (healthTooltip) return healthTooltip;
+  
+  healthTooltip = document.createElement('div');
+  healthTooltip.id = 'narrative-health-tooltip';
+  healthTooltip.style.display = 'none';
+  document.body.appendChild(healthTooltip);
+  
+  return healthTooltip;
+}
+
+function showHealthTooltip(token, state) {
+  const tooltip = createHealthTooltip();
+  
+  tooltip.textContent = state;
+  tooltip.className = `narrative-health-tooltip ${state.toLowerCase().replace(/\s+/g, '-')}`;
+  tooltip.style.display = 'block';
+  
+  // Position above the token
+  const bounds = token.bounds;
+  const scale = canvas.stage.scale.x;
+  
+  tooltip.style.left = `${bounds.x + (bounds.width / 2)}px`;
+  tooltip.style.top = `${bounds.y - 40}px`;
+}
+
+function hideHealthTooltip() {
+  if (healthTooltip) {
+    healthTooltip.style.display = 'none';
+  }
+}
+
+// Hook into token hover events
+Hooks.on("hoverToken", (token, hovered) => {
   const user = game.user;
-
-  // GMs always see full numeric HP - don't modify their view
+  
+  // GMs always see numeric HP
   if (user.isGM) return;
-
+  
+  const actor = token.actor;
+  if (!actor) return;
+  
   // Only show for actors the player can observe
   if (!actor.testUserPermission(user, "OBSERVER")) return;
-
-  // Get HP data - handle different system structures
-  const hp = actor.system?.attributes?.hp;
-  if (!hp || hp.max <= 0) return;
-
-  const state = getHealthState(hp.value, hp.max);
-
-  // Hide the numeric HP input field
-  const hpInput = html.find('input[name="system.attributes.hp.value"]');
-  if (hpInput.length > 0) {
-    hpInput.closest(".attribute").hide();
-  }
-
-  // Also hide any HP bars or numeric displays
-  html.find('.resource[data-name="hp"]').hide();
-  html.find('.attribute.hp').hide();
-
-  // Inject our narrative health descriptor
-  const healthHtml = `
-    <div class="bg-health-state resource">
-      <label>Health</label>
-      <div class="health-value ${state.toLowerCase().replace(/\s+/g, '-')}">${state}</div>
-      <div class="health-subtitle">Classic CRPG Style</div>
-    </div>
-  `;
-
-  // Find the best place to inject (try multiple locations for compatibility)
-  const resources = html.find(".resources");
-  const attributes = html.find(".attributes");
   
-  if (resources.length > 0) {
-    resources.prepend(healthHtml);
-  } else if (attributes.length > 0) {
-    attributes.prepend(healthHtml);
+  // Check if this is an NPC/enemy (not owned by the player)
+  const isPlayerOwned = actor.hasPlayerOwner;
+  
+  if (hovered && !isPlayerOwned) {
+    const hp = actor.system?.attributes?.hp;
+    if (!hp || hp.max <= 0) return;
+    
+    const state = getHealthState(hp.value, hp.max);
+    showHealthTooltip(token, state);
   } else {
-    // Fallback: try to find the header section
-    html.find(".sheet-header").append(healthHtml);
+    hideHealthTooltip();
   }
 });
 
-// Optional: Hook into token HUD for quick reference
-Hooks.on("renderTokenHUD", (hud, html, data) => {
-  const token = canvas.tokens.get(data._id);
-  if (!token) return;
-
-  const actor = token.actor;
-  if (!actor) return;
-
-  const user = game.user;
-
-  // GMs see numeric HP on token HUD
-  if (user.isGM) return;
-
-  // Only show for observable actors
-  if (!actor.testUserPermission(user, "OBSERVER")) return;
-
-  const hp = actor.system?.attributes?.hp;
-  if (!hp || hp.max <= 0) return;
-
-  const state = getHealthState(hp.value, hp.max);
-
-  // Find and modify the HP display in token HUD
-  const hpDiv = html.find('.attribute.bar1, .attribute[data-attribute="bar1"]');
-  if (hpDiv.length > 0) {
-    const currentValue = hpDiv.find('input');
-    if (currentValue.length > 0) {
-      currentValue.val(state).prop('disabled', true);
-    }
-  }
+// Also hide tooltip when canvas is panned or deselected
+Hooks.on("canvasPan", () => {
+  hideHealthTooltip();
 });
 
 // Log module initialization
 Hooks.once("ready", () => {
   console.log("Narrative Health States | Module loaded by NylasDev");
-  console.log("Narrative Health States | Players will now see narrative health states instead of numeric HP");
+  console.log("Narrative Health States | Hover over enemy tokens to see their health state");
+  
+  // Create tooltip element on ready
+  createHealthTooltip();
 });

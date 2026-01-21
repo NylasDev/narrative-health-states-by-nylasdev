@@ -1,6 +1,8 @@
 # Narrative Health States by NylasDev
 
-A Foundry VTT module that replaces numeric HP values with narrative health descriptors inspired by classic CRPGs like **Baldur's Gate**, **Planescape: Torment**, and **Icewind Dale**.
+A Foundry VTT module that shows narrative health descriptors when players hover over enemy tokens, inspired by classic CRPGs like **Baldur's Gate**, **Planescape: Torment**, and **Icewind Dale**.
+
+Instead of seeing exact HP numbers, players see colored tooltips displaying states like **"Injured"** or **"Near Death"** when hovering over enemies.
 
 ![Version](https://img.shields.io/badge/version-0.1.0-blue)
 ![Foundry](https://img.shields.io/badge/Foundry-v10--v11-orange)
@@ -8,11 +10,12 @@ A Foundry VTT module that replaces numeric HP values with narrative health descr
 
 ## ✨ Features
 
-- **Narrative Health States**: Shows descriptive health conditions instead of numbers
-- **Player-Focused**: Hides numeric HP from players while GMs retain full visibility
-- **Classic Immersion**: Faithful recreation of Infinity Engine health feedback
+- **Token Hover Tooltips**: Colored health states appear when hovering over enemy tokens
+- **Narrative Feedback**: Descriptive conditions instead of numbers
+- **Player-Focused**: Hides exact HP from players while GMs retain full visibility
+- **Classic Immersion**: Faithful recreation of classic CRPG health feedback
+- **Beautiful Presentation**: Color-coded tooltips with smooth animations on black backgrounds
 - **System-Agnostic**: Works with D&D 5e and other Foundry systems
-- **Token HUD Support**: Health states appear on token hover (optional)
 - **Zero Configuration**: Works out of the box after installation
 
 ## 🎮 Health States
@@ -56,12 +59,13 @@ https://raw.githubusercontent.com/NylasDev/narrative-health-states-by-nylasdev/m
 
 1. **Enable the module** in your world settings
 2. **Reload** Foundry VTT
-3. **Open any character sheet** as a player (not GM)
-4. Numeric HP is automatically replaced with health descriptions
+3. **Hover over an enemy token** as a player
+4. A colored tooltip appears showing the health state
 
 ### What Players See
-- **Health descriptor** instead of HP numbers
-- Visual color coding for quick assessment
+- **Colored tooltip** above enemy tokens on hover
+- Text like "Injured" or "Near Death" on a black background
+- Color-coded for quick threat assessment
 - "Near Death" state pulses for dramatic effect
 
 ### What GMs See
@@ -93,16 +97,18 @@ This was a core design pillar of **Baldur's Gate**, **Icewind Dale**, and **Plan
 
 ### How It Works
 - **Non-invasive**: Does not modify actor HP data
+- **Token hover based**: Uses Foundry's `hoverToken` hook
 - **Permission-aware**: Respects Foundry's actor permissions
-- **Hook-based**: Uses `renderActorSheet` and `renderTokenHUD` hooks
 - **Safe**: GM view remains completely unchanged
+- **Visual tooltips**: Dynamically positioned above tokens
 
 ### For Developers
 The module uses a clean approach:
-1. Calculates HP ratio from `actor.system.attributes.hp`
-2. Hides numeric input via CSS for non-GM users
-3. Injects narrative descriptor with color coding
-4. Preserves all underlying HP mechanics
+1. Hooks into `hoverToken` event
+2. Calculates HP ratio from `actor.system.attributes.hp`
+3. Shows positioned tooltip for non-GM users hovering over non-owned actors
+4. Hides tooltip on pan or when hover ends
+5. Preserves all underlying HP mechanics
 
 ## 📸 Screenshots
 

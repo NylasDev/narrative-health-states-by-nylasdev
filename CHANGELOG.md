@@ -11,12 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Initial release of Narrative Health States module
+- Token hover tooltips showing health states for enemy actors
 - Classic CRPG-inspired health state descriptors (Unhurt, Barely Injured, Injured, Badly Injured, Near Death, Dead)
-- Automatic hiding of numeric HP for players
+- Automatic hiding of exact HP for players
 - Full GM visibility of numeric HP maintained
-- Color-coded health states for quick visual assessment
+- Color-coded health states on black backgrounds for quick visual assessment
 - Pulsing animation for "Near Death" state
-- Token HUD integration for quick health checks
+- Smooth tooltip animations
 - English localization support
 - System-agnostic design (works with D&D 5e and compatible systems)
 

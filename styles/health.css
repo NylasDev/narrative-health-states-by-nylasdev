@@ -3,77 +3,73 @@
  * by NylasDev
  */
 
-/* Main health state container */
-.bg-health-state {
-  display: flex;
-  flex-direction: column;
-  padding: 8px;
-  margin: 4px 0;
-  background: rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 3px;
-}
-
-.bg-health-state label {
-  font-size: 0.9em;
-  font-weight: bold;
-  color: #4b4a44;
-  margin-bottom: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Health value text */
-.bg-health-state .health-value {
-  font-size: 1.1em;
+/* Health tooltip that appears on token hover */
+.narrative-health-tooltip {
+  position: fixed;
+  z-index: 10000;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  font-family: "Signika", sans-serif;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
-  padding: 6px 0;
-  border-radius: 2px;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  animation: tooltip-appear 0.2s ease-out;
 }
 
-/* Health state colors - inspired by classic CRPGs */
-.bg-health-state .health-value.unhurt {
+@keyframes tooltip-appear {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Health state colors */
+.narrative-health-tooltip.unhurt {
   color: #2ecc71;
-  background: rgba(46, 204, 113, 0.1);
+  border-color: #2ecc71;
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.4);
 }
 
-.bg-health-state .health-value.barely-injured {
+.narrative-health-tooltip.barely-injured {
   color: #27ae60;
-  background: rgba(39, 174, 96, 0.1);
+  border-color: #27ae60;
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
 }
 
-.bg-health-state .health-value.injured {
+.narrative-health-tooltip.injured {
   color: #f39c12;
-  background: rgba(243, 156, 18, 0.1);
+  border-color: #f39c12;
+  box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4);
 }
 
-.bg-health-state .health-value.badly-injured {
+.narrative-health-tooltip.badly-injured {
   color: #e67e22;
-  background: rgba(230, 126, 34, 0.1);
+  border-color: #e67e22;
+  box-shadow: 0 4px 12px rgba(230, 126, 34, 0.4);
 }
 
-.bg-health-state .health-value.near-death {
+.narrative-health-tooltip.near-death {
   color: #c0392b;
-  background: rgba(192, 57, 43, 0.15);
-  animation: pulse-danger 2s ease-in-out infinite;
+  border-color: #c0392b;
+  box-shadow: 0 4px 12px rgba(192, 57, 43, 0.5);
+  animation: tooltip-appear 0.2s ease-out, pulse-danger 2s ease-in-out infinite;
 }
 
-.bg-health-state .health-value.dead {
+.narrative-health-tooltip.dead {
   color: #7f8c8d;
-  background: rgba(127, 140, 141, 0.1);
-  text-decoration: line-through;
-}
-
-/* Subtitle for attribution */
-.bg-health-state .health-subtitle {
-  font-size: 0.7em;
-  color: #7f8c8d;
-  text-align: center;
-  margin-top: 4px;
-  font-style: italic;
-  opacity: 0.6;
+  border-color: #7f8c8d;
+  box-shadow: 0 4px 12px rgba(127, 140, 141, 0.4);
 }
 
 /* Pulse animation for Near Death state */
@@ -84,25 +80,4 @@
   50% {
     opacity: 0.7;
   }
-}
-
-/* Token HUD styling adjustments */
-.token-hud .attribute input[disabled] {
-  color: inherit;
-  background: rgba(0, 0, 0, 0.2);
-  cursor: default;
-  text-align: center;
-  font-weight: bold;
-}
-
-/* Dark mode / alternate sheet compatibility */
-.dark-theme .bg-health-state,
-.sheet.dark .bg-health-state {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.dark-theme .bg-health-state label,
-.sheet.dark .bg-health-state label {
-  color: #d4d4d4;
 }
