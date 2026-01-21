@@ -43,10 +43,16 @@ function createHealthTooltip() {
   return healthTooltip;
 }
 
-function showHealthTooltip(token, state) {
+function showHealthTooltip(token, state, hp = null) {
   const tooltip = createHealthTooltip();
   
-  tooltip.textContent = state;
+  // Show state + HP for GMs, just state for players
+  if (game.user.isGM && hp) {
+    tooltip.textContent = `${state} (${hp.value}/${hp.max})`;
+  } else {
+    tooltip.textContent = state;
+  }
+  
   tooltip.className = `narrative-health-tooltip ${state.toLowerCase().replace(/\s+/g, '-')}`;
   tooltip.style.display = 'block';
   
@@ -94,12 +100,6 @@ Hooks.on("hoverToken", (token, hovered) => {
   
   const user = game.user;
   
-  // GMs always see numeric HP
-  if (user.isGM) {
-    log("User is GM, skipping");
-    return;
-  }
-  
   const actor = token.actor || token.document?.actor;
   if (!actor) {
     log("No actor found");
@@ -118,7 +118,8 @@ Hooks.on("hoverToken", (token, hovered) => {
   const isPlayerOwned = actor.hasPlayerOwner;
   log("Is player owned:", isPlayerOwned);
   
-  if (hovered && !isPlayerOwned) {
+  // Show for NPCs, or for GMs on any token
+  if (hovered && (!isPlayerOwned || user.isGM)) {
     const hp = actor.system?.attributes?.hp;
     if (!hp || hp.max <= 0) {
       log("No valid HP data:", hp);
@@ -127,7 +128,7 @@ Hooks.on("hoverToken", (token, hovered) => {
     
     log("HP:", hp.value, "/", hp.max);
     const state = getHealthState(hp.value, hp.max);
-    showHealthTooltip(token, state);
+    showHealthTooltip(token, state, hp);
   } else {
     hideHealthTooltip();
   }
